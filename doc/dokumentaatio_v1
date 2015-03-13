@@ -1,0 +1,24 @@
+##Autopaikkojen varausjärjestelmä##
+
+Projektin aihe autopaikkojen varausjärjestelmä. Järjestelmään tallennettu pysäköintialueita autopaikkoineen, joita voidaan varata asiakkaille. 
+
+Järjestelmä toteutetaan PostregSQL-tietokannalla. Web-sovellus ohjelmoidaan PHP-kielellä.
+
+Käyttötapaukset:
+
+Pääkäyttäjä:
+- Kiinteistön lisääminen 
+- Kiinteistön muokkaus
+- Kiinteistö poisto
+- Autopaikan lisääminen
+- Autopaikan muokkaus
+- Autopaikan poisto
+
+Käyttäjä:
+- Asiakkaan luominen 
+- Asiakkaan muokkaus
+- Asiakkaan poisto
+- Asiakkaan lisääminen jonoon
+- Autopaikkavarauksen tekeminen jonosta käsin
+- Autopaikkavarauksen tekeminen 
+- Autopaikkavarauksen irtisanominen
