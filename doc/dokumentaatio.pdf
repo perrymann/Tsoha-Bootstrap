@@ -2,17 +2,11 @@
 
 Projektin aihe autopaikkojen varausjärjestelmä. Järjestelmään tallennettu pysäköintialueita autopaikkoineen, joita voidaan varata asiakkaille. 
 
-Järjestelmä toteutetaan PostregSQL-tietokannalla. Web-sovellus ohjelmoidaan PHP-kielellä.
+Varaukset ovat sidottuja kalenteriin, joten järjestelmästä käyvät ilmi tietyn varauksen teko-, alkamis-, irtisanomis- ja päättymispäivämäärät. 
+
+Järjestelmä toteutetaan PostregSQL-tietokannalla laitoksen users-palvelimella. Web-sovellus ohjelmoidaan PHP-kielellä.
 
 Käyttötapaukset:
-
-Pääkäyttäjä:
-- Kiinteistön lisääminen 
-- Kiinteistön muokkaus
-- Kiinteistö poisto
-- Autopaikan lisääminen
-- Autopaikan muokkaus
-- Autopaikan poisto
 
 Käyttäjä:
 - Asiakkaan luominen 
@@ -22,3 +16,11 @@ Käyttäjä:
 - Autopaikkavarauksen tekeminen jonosta käsin
 - Autopaikkavarauksen tekeminen 
 - Autopaikkavarauksen irtisanominen
+
+Pääkäyttäjällä edellisten lisäksi seuraavat:
+- Kiinteistön lisääminen 
+- Kiinteistön muokkaus
+- Kiinteistö poisto
+- Autopaikan lisääminen
+- Autopaikan muokkaus
+- Autopaikan poisto
