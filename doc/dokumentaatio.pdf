@@ -6,9 +6,14 @@ Varaukset ovat sidottuja kalenteriin, joten järjestelmästä käyvät ilmi tiet
 
 Järjestelmä toteutetaan PostregSQL-tietokannalla laitoksen users-palvelimella. Web-sovellus ohjelmoidaan PHP-kielellä.
 
-Käyttötapaukset:
+Käyttäjäryhmät:
+- Käyttäjät
+- Pääkäyttäjät
 
-Käyttäjä:
+Kaikkien käyttäjäryhmien käyttötapaukset
+- Kirjautuminen
+- Kiinteistön tarkastelu ja valinta
+- Autopaikkalistan tarkastelu
 - Asiakkaan luominen 
 - Asiakkaan muokkaus
 - Asiakkaan poisto
@@ -16,11 +21,12 @@ Käyttäjä:
 - Autopaikkavarauksen tekeminen jonosta käsin
 - Autopaikkavarauksen tekeminen 
 - Autopaikkavarauksen irtisanominen
+- Autopaikkojen tarkastelu
 
 Pääkäyttäjällä edellisten lisäksi seuraavat:
 - Kiinteistön lisääminen 
 - Kiinteistön muokkaus
-- Kiinteistö poisto
+- Kiinteistön poisto
 - Autopaikan lisääminen
 - Autopaikan muokkaus
 - Autopaikan poisto
