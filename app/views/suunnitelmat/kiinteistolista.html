@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Kiinteistöt</h1>
+
+<form role="suodata">
+	<div class"row">
+  		<div class="form-group col-lg-4">
+      		<input type="text" class="form-control" id="sort" placeholder="Suodata">
+  		</div>
+  		<button type="button" class="btn btn-default" aria-label="Right Align">
+  			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		</button>
+  	</div>
+</form>  
+
+
+<table class="table table-condensed table-hover">
+	<thead>
+      	<tr>
+	        <th>Kiinteistö</th>
+	        <th>Katuosoite</th>
+	        <th>Postinumero</th>
+	        <th>Kaupunki</th>
+	        <th></th>
+	        <th></th>
+      	</tr>
+    </thead>
+    <tbody>
+    	<tr>
+    		<td><a href="#">Testikatu 4</a></td>
+	        <td>Testikatu 4</td>
+	        <td>666</td>
+	        <td>Testilä</td>
+	        <th><button class="btn btn-default btn-sm" href="#">Muokkaa</button>
+	        <th><button class="btn btn-danger btn-sm" href="#">Poista</button></th>
+    	</tr>
+    	<tr>
+    		<td><a href="#">Testikatu 8</a></td>
+	        <td>Testikatu 8</td>
+	        <td>616</td>
+	        <td>Turku</td>
+	        <th><button class="btn btn-default btn-sm" href="#">Muokkaa</button>
+	        <th><button class="btn btn-danger btn-sm" href="#">Poista</button></th>
+    	</tr>	
+    <tbody>
+
+    </tbody>
+
+</table>
+<p >
+	<button class="btn btn-success">Lisää kiinteistö</button>
+</p>
+
+
+{% endblock %}

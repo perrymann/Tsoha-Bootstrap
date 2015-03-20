@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+	<form role="asiakastiedot">
+		<h2>Asiakastiedot</h2>
+	  	<div class="form-group">
+	  		<label class="control-label" for="asiakastunnus:">Asiakastunnus:</label>
+		    <div class="controls">
+		    	<input disabled="disabled" id="asiakastunnus" name="asiakastunnus" type="text" value="6648" />
+			</div>
+		</div>	
+	  	<div class="form-group">
+	  		<label class="control-label" for="etunimi:">Etunimi:</label>
+		    <div class="controls">
+		    	<input id="etunimi" name="etunimi" type="text" value="Stig" />
+			</div>
+		</div>
+		<div class="form-group">
+		    <label class="control-label" for="sukunimi:">Sukunimi:</label>
+		    <div class="controls">
+		    	<input id="sukunimi" name="sukunimi" type="text" value="Mäkinen" />
+		    </div>
+		</div>   
+		<div class="form-group">
+	  		<label class="control-label" for="katuosoite:">Katuosoite:</label>
+		    <div class="controls">
+		    	<input id="katuosoite" name="katuosoite" type="text" value="Testikatu 4 b 65" />
+			</div>
+		</div>
+		<div class="form-group">
+		    <label class="control-label" for="postinumero:">Postinumero:</label>
+		    <div class="controls">
+		    	<input id="postinumero" name="postinumero" type="text" value="666" />
+		    </div>
+		</div>
+		<div class="form-group"> 	
+		    <label class="control-label" for="postitoimipaikka:">Postitoimipaikka:</label>
+			<div class="controls">
+		    	<input id="postitoimipaikka" name="postitoimipaikka" type="text" value="Testilä" />
+		    </div>
+		</div>    
+		<div class="form-group"> 	
+		    <label class="control-label" for="puhelin:">Puhelin:</label>
+			<div class="controls">
+		    	<input id="puhelin" name="puhelin" type="text" value="03439272" />
+		    </div>
+		</div> 
+		<div class="form-group"> 	
+		    <label class="control-label" for="email:">Email:</label>
+			<div class="controls">
+		    	<input id="email" name="email" type="text" value="stigu@mejfhkjhfke.com" />
+		    </div>
+		</div> 
+		<div class="form-group">
+		    <button type="submit" class="btn btn-primary">Tallenna</button>
+		</div>
+	</form> 	    
+		      	<h2>Varaushistoria</h2>
+     	
+	   
+
+
+{% endblock %}
