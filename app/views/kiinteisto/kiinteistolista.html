@@ -13,7 +13,6 @@
   	</div>
 </form>  
 
-
 <table class="table table-condensed table-hover">
 	<thead>
       	<tr>
@@ -26,30 +25,19 @@
       	</tr>
     </thead>
     <tbody>
+    	{% for kiinteisto in kiinteistot %}
     	<tr>
-    		<td><a href="#">Testikatu 4</a></td>
-	        <td>Testikatu 4</td>
-	        <td>666</td>
-	        <td>Testilä</td>
+    		<td><a href="{{base_path}}/kiinteisto/{{kiinteisto.id}}">{{kiinteisto.nimi}}</td>
+	        <td>{{kiinteisto.katuosoite}}</td>
+	        <td>{{kiinteisto.postinumero}}</td>
+	        <td>{{kiinteisto.postitoimipaikka}}</td>
 	        <th><button class="btn btn-default btn-sm" href="#">Muokkaa</button>
 	        <th><button class="btn btn-danger btn-sm" href="#">Poista</button></th>
     	</tr>
-    	<tr>
-    		<td><a href="#">Testikatu 8</a></td>
-	        <td>Testikatu 8</td>
-	        <td>616</td>
-	        <td>Turku</td>
-	        <th><button class="btn btn-default btn-sm" href="#">Muokkaa</button>
-	        <th><button class="btn btn-danger btn-sm" href="#">Poista</button></th>
-    	</tr>	
-    <tbody>
-
-    </tbody>
-
+    	{% endfor %}
 </table>
 <p >
-	<button class="btn btn-success">Lisää kiinteistö</button>
+	<a href="{{base_path}}/kiinteisto/new" class="btn btn-success">Lisää kiinteistö</a>
 </p>
-
 
 {% endblock %}

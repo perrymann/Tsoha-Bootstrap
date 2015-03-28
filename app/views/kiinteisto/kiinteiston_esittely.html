@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% for kiinteisto in haettukiinteisto %}
+
+<h1>{{kiinteisto.nimi}}</h1>
+  
+<p>{{kiinteisto.katuosoite}}</p>
+<p>{{kiinteisto.postinumero}} {{kiinteisto.postitoimipaikka}}</p>
+
+<p>
+  <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
+</p>
+  <!-- Tiedot tulee listana tähän -->
+
+{% endfor %}
+
+<h2>Autopaikat</h2>
+
+<p>Tänne tulee kiinteistöön liitetyt autopaikat ja niiden hallinta</p>
+<!-- autopaikat tänne alle -->
+
+{% endblock %}
