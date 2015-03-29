@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Autopaikka-alueet</h>
+
+<table class="table table-condensed table-hover">
+	<thead>
+      	<tr>
+	        <th>ID</th>
+	        <th>Nimi</th>
+	    </tr>
+    </thead>
+    <tbody>
+    	{% for ap_alue in ap_alueet %}
+    	<tr>
+    		<td><a href="{{base_path}}/ap_alue/{{ap_alue.id}}">{{ap_alue.id}}</td>
+	        <td>{{ap_alue.nimi}}</td>
+	        <th><button class="btn btn-default btn-sm" href="#">Muokkaa</button>
+	        <th><button class="btn btn-danger btn-sm" href="#">Poista</button></th>
+    	</tr>
+    	{% endfor %}
+</table>	
+
+{% endblock %}

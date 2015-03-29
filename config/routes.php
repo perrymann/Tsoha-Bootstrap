@@ -41,3 +41,26 @@
   $routes->get('/kiinteisto/:id', function($id){
     KiinteistoController::kiinteisto($id);
   });
+
+  $routes->get('/kiinteisto/:id/edit', function($id){
+    KiinteistoController::edit($id);
+  });
+
+  $routes->post('/kiinteisto/:id/edit', function($id){
+    KiinteistoController::update($id);
+  });
+
+  $routes->post('/kiinteisto/:id/destroy', function($id){
+    KiinteistoController::destroy($id);
+  });
+
+  //Ap_alueController
+
+  $routes->get('/ap_alue', function(){
+    Ap_alueController::index();
+
+
+    
+  });
+
+
