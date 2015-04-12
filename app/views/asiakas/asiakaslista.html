@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Asiakkaat</h1>
+
+<table class="table table-condensed table-hover">
+	<thead>
+      	<tr>
+	        <th>ID</th>
+	        <th>Nimi</th> 
+	        <th>Katuosoite</th>
+	        <th>Postinumero</th>
+	        <th>Postitoimipaikka</th>
+      	</tr>
+    </thead>
+    <tbody>
+       {% for Asiakas in asiakkaat %}
+    	<tr>
+    		<td>{{Asiakas.id}}</td>
+    		<td><a href="{{base_path}}/asiakas/{{Asiakas.id}}">{{Asiakas.etunimi}} {{Asiakas.sukunimi}}</td>
+	        <td>{{Asiakas.katuosoite}}</td>
+	        <td>{{Asiakas.postinumero}}</td>
+	        <td>{{Asiakas.postitoimipaikka}}</td>
+    	</tr>
+    	{% endfor %}
+    </tbody> 	
+ </table>
+
+ <p >
+  <a href="{{base_path}}/asiakas/new" class="btn btn-success">Lisää asiakas</a>
+</p>
+
+{% endblock %}

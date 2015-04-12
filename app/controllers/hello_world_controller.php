@@ -6,14 +6,6 @@
       View::make('suunnitelmat/etusivu.html');
     }
 
-    public static function sandbox(){
-      $stigu = Asiakas::findById(1);
-      $asiakkaat = Asiakas::all();
-
-      Kint::dump($stigu);
-      Kint::dump($asiakkaat);
-    }
-
     public static function login(){
       View::make('suunnitelmat/login.html');
     }
@@ -26,8 +18,17 @@
       View::make('suunnitelmat/varauslista.html');
     }
 
-    public static function asiakastiedot(){
-      View::make('suunnitelmat/asiakas.html');
+    public static function sandbox(){
+      $testikiinteisto = new Kiinteisto(array(
+        'nimi' => 'As Oy',
+        'katuosoite' => 'Testikatu',
+        'postinumero' => '000000',
+        'postitoimipaikka' => 'Ii'  
+
+      ));
+      $errors = $testikiinteisto->errors();
+
+      Kint::dump($errors);
     }
-    
+
 } 

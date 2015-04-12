@@ -1,60 +1,71 @@
 {% extends "base.html" %}
 {% block content %}
-	<form role="asiakastiedot">
+	
+	<!-- <form role="asiakastiedot"> -->
+
 		<h2>Asiakastiedot</h2>
+	<form method="post" action="{{base_path}}/asiakas/{{haettuasiakas.id}}/edit" style="display: inline-block;">
 	  	<div class="form-group">
-	  		<label class="control-label" for="asiakastunnus:">Asiakastunnus:</label>
+	  		<label class="control-label" for="id:">Asiakastunnus:</label>
 		    <div class="controls">
-		    	<input disabled="disabled" id="asiakastunnus" name="asiakastunnus" type="text" value="6648" />
+		    	<input disabled="disabled" id="asiakastunnus" name="if" type="text" value="{{haettuasiakas.id}}" />
 			</div>
 		</div>	
 	  	<div class="form-group">
 	  		<label class="control-label" for="etunimi:">Etunimi:</label>
 		    <div class="controls">
-		    	<input id="etunimi" name="etunimi" type="text" value="Stig" />
+		    	<input id="etunimi" name="etunimi" type="text" value="{{haettuasiakas.etunimi}}" />
 			</div>
 		</div>
 		<div class="form-group">
 		    <label class="control-label" for="sukunimi:">Sukunimi:</label>
 		    <div class="controls">
-		    	<input id="sukunimi" name="sukunimi" type="text" value="Mäkinen" />
+		    	<input id="sukunimi" name="sukunimi" type="text" value="{{haettuasiakas.sukunimi}}" />
 		    </div>
 		</div>   
 		<div class="form-group">
 	  		<label class="control-label" for="katuosoite:">Katuosoite:</label>
 		    <div class="controls">
-		    	<input id="katuosoite" name="katuosoite" type="text" value="Testikatu 4 b 65" />
+		    	<input id="katuosoite" name="katuosoite" type="text" value="{{haettuasiakas.katuosoite}}" />
 			</div>
 		</div>
 		<div class="form-group">
 		    <label class="control-label" for="postinumero:">Postinumero:</label>
 		    <div class="controls">
-		    	<input id="postinumero" name="postinumero" type="text" value="666" />
+		    	<input id="postinumero" name="postinumero" type="text" value="{{haettuasiakas.postinumero}}" />
 		    </div>
 		</div>
 		<div class="form-group"> 	
 		    <label class="control-label" for="postitoimipaikka:">Postitoimipaikka:</label>
 			<div class="controls">
-		    	<input id="postitoimipaikka" name="postitoimipaikka" type="text" value="Testilä" />
+		    	<input id="postitoimipaikka" name="postitoimipaikka" type="text" value="{{haettuasiakas.postitoimipaikka}}" />
 		    </div>
 		</div>    
 		<div class="form-group"> 	
-		    <label class="control-label" for="puhelin:">Puhelin:</label>
+		    <label class="control-label" for="puhelinnumero:">Puhelin:</label>
 			<div class="controls">
-		    	<input id="puhelin" name="puhelin" type="text" value="03439272" />
+		    	<input id="puhelin" name="puhelinnumero" type="text" value="{{haettuasiakas.puhelinnumero}}" />
 		    </div>
 		</div> 
 		<div class="form-group"> 	
 		    <label class="control-label" for="email:">Email:</label>
 			<div class="controls">
-		    	<input id="email" name="email" type="text" value="stigu@mejfhkjhfke.com" />
+		    	<input id="email" name="email" type="text" value="{{haettuasiakas.email}}" />
 		    </div>
 		</div> 
-		<div class="form-group">
-		    <button type="submit" class="btn btn-primary">Tallenna</button>
-		</div>
-	</form> 	    
-		      	<h2>Varaushistoria</h2>
+
+	
+	<!-- </form> -->
+
+	
+		<button type="submit" class="btn btn-primary">Päivitä</button>
+	</form>
+
+	<form method="post" action="{{base_path}}/asiakas/{{haettuasiakas.id}}/destroy" style="display: inline-block;">
+  		<button type="submit" class="btn btn-danger">Poista asiakas</button>
+	</form>	 	
+
+	<h2>Varaushistoria</h2>
      	
 	   
 

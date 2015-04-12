@@ -21,8 +21,37 @@
 
       foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+        $errors = array_merge($errors, $this->{$validator}());
+        // ei toimi, saa poistaa -> $validator_errors[] = $this->{$validator}();
       }
 
+      // ei toimi, saa poistaa -> $errors = array_merge($errors, $validator_errors);
+      return $errors;
+    }
+
+    // yleinen validaattori
+
+    public function validate_minimum_string_length($string, $length){
+      $errors = array();
+      if($string == '' || $string == null) {
+        $errors[] = 'Syöte ei saa olla tyhjä!';
+      }  
+      if(strlen($string) < $length){
+        $errors[] = 'Syöte on liian lyhyt!';
+      }
+      return $errors;
+
+    // yleinen validaattori  
+
+    }
+    public function validate_exact_string_length($string, $length){
+      $errors = array();
+      if($string == '' || $string == null) {
+        $errors[] = 'Syöte ei saa olla tyhjä!';
+      } 
+      if(strlen($string) != $length){
+        $errors[] = 'Syöte on väärän pituinen!';
+      }
       return $errors;
     }
 

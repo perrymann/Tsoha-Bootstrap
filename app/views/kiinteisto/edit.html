@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa kiinteistöä</h1>
+
+  <form method="post" action="{{base_path}}/kiinteisto/{{attributes.id}}/edit">
+    
+
+    <div class="form-group">
+        <label class="control-label" for="nimi:">Kiinteistön nimi:</label>
+        <div class="controls">
+          <input id="nimi" name="nimi" type="text" value="{{attributes.nimi}}" />
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="katuosoite:">Katuosoite:</label>
+        <div class="controls">
+          <input id="katuosoite" name="katuosoite" type="text" value="{{attributes.katuosoite}}" />
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="postinumero:">Postinumero:</label>
+        <div class="controls">
+          <input id="postinumero" name="postinumero" type="text" value="{{attributes.postinumero}}" />
+      </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label" for="postitoimipaikka:">Postitoimipaikka:</label>
+        <div class="controls">
+          <input id="postitoimipaikka" name="postitoimipaikka" type="text" value="{{attributes.postitoimipaikka}}" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Päivitä</button>
+    </div>
+  </form>
+ 
+{% endblock %}
