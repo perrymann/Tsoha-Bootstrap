@@ -4,16 +4,16 @@
     HelloWorldController::index();
   });
 
-  $routes->get('/sandbox', function(){
-    HelloWorldController::sandbox();
+  $routes->get('/yllapito', function(){
+   HelloWorldController::yllapito();
   });
 
-  $routes->get('/varauslista', function(){
-  	HelloWorldController::varauslista();
-  });
+  // $routes->get('/sandbox', function(){
+  //   HelloWorldController::sandbox();
+  // });
 
   // -------- Kiinteistokontroller -------------------
- 
+   
   $routes->get('/kiinteisto', function(){
     KiinteistoController::index();
   });
@@ -42,12 +42,6 @@
     KiinteistoController::destroy($id);
   });
 
-  // testi, katsotaan tarvitaanko
-
-  $routes->post('/kiinteisto/search', function($katuosoite){
-    KiinteistoController::findByAddress($katuosoite);
-  });
-
   // AsiakasController -------------------------
 
   $routes->get('/asiakas', function(){
@@ -74,7 +68,6 @@
     AsiakasController::sandbox();
   });
 
-  // kokeillaan toimiiko muokkaus...
   $routes->post('/asiakas/:id/edit', function($id){
     AsiakasController::update($id);
   });
@@ -88,6 +81,45 @@
   $routes->post('/login', function(){
     KayttajaController::handle_login();
   });
+
+  $routes->post('/logout', function(){
+    KayttajaController::logout();
+  });
+
+  $routes->get('/kayttaja', function(){
+    KayttajaController::index();
+  });
+
+  $routes->post('/kayttaja', function(){
+    KayttajaController::store();
+  });
+
+  $routes->get('/kayttaja/new', function(){
+    KayttajaController::create();
+  });
+
+  $routes->get('/kayttaja/:id', function($id){
+    KayttajaController::kayttaja($id);
+  });
+  
+  // AutopaikkaController
+
+  $routes->get('/autopaikka/:id', function($id){
+    AutopaikkaController::autopaikka($id);
+  });
+
+  // Varauskontroller
+
+  $routes->get('/autopaikka/:id/varaus/new', function($id){
+    VarausController::create($id);
+  });
+
+  $routes->post('/autopaikka/:id/varaus/new', function($id){
+    VarausController::store($id);
+  });
+
+
+
   
 
 

@@ -20,4 +20,48 @@ class KayttajaController extends BaseController{
 		}
 	}
 
+	public static function logout(){
+      $_SESSION['kayttaja'] = null;
+      Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));   
+    }
+
+    public static function index(){
+    	BaseController::check_admin();
+    	$kayttajat = Kayttaja::all();
+    	View::make('kayttaja/kayttajat.html', array('kayttajat' => $kayttajat));
+    }
+
+    public static function kayttaja($id){
+    	BaseController::check_admin();
+    	$kayttaja = Kayttaja::findById($id);
+    	View::make('kayttaja/kayttaja.html', array('kayttaja' => $kayttaja));
+    }
+
+    public static function create(){
+    	BaseController::check_admin();
+    	View::make('kayttaja/new.html');
+    }
+
+    public static function store(){
+    	BaseController::check_admin();
+    	$params = $_POST;
+
+		$attributes = array(
+			'nimi' => $params['nimi'],
+			'tunnus' => $params['tunnus'],
+			'salasana' => $params['salasana'],
+			'paakaytto' => $params['paakaytto']
+			);
+		
+		$kayttaja = new Kayttaja($attributes);
+		$errors = $kayttaja->errors();
+
+		if(count($errors) == 0){
+			$kayttaja->save();
+			Redirect::to('/kayttaja/' . $kayttaja->id);
+		} else {
+			View::make('/kayttaja/new.html', array('errors' => $errors, 'attributes' => $attributes) );
+		}
+    }
+
 }

@@ -5,6 +5,7 @@
 		// hakee kaikki asiakkaat 
 
 		public static function index(){
+      BaseController::check_logged_in();
 			$asiakkaat = Asiakas::all();
 			View::make('asiakas/asiakaslista.html', array('asiakkaat' => $asiakkaat));
 		}
@@ -12,6 +13,7 @@
 		// hakee asiakkaan id:llä
 
 		public static function asiakastiedot($id){
+      BaseController::check_logged_in();
 			$haettuasiakas = Asiakas::findById($id);
       		View::make('asiakas/asiakas.html', array('haettuasiakas' => $haettuasiakas));
     	}
@@ -19,6 +21,7 @@
       // tallentaa
 
       public static function store(){
+        BaseController::check_logged_in();
         $params = $_POST;
 
         $attributes = array(
@@ -32,7 +35,7 @@
           );
 
         $asiakas = new Asiakas($attributes);
-        $errors = array();    //$asiakas->errors(); <- validointi!!!
+        $errors = $asiakas->errors();
 
         if(count($errors) == 0){
           $asiakas->save();
@@ -46,19 +49,18 @@
     	// ohjaa uudelle lomakkeelle
 
     	public static function create(){
+        BaseController::check_logged_in();
     		View::make('asiakas/new.html');
     	}
 
-      // edit: ei toimi
-
       public static function edit($id){
+        BaseController::check_logged_in();
         $asiakas = Asiakas::findById($id);
         View::make('asiakas/' . $asiakas->id, array('attributes' => $kiinteisto));
       }
 
-      // update: ei toimi
-
       public static function update($id){
+        BaseController::check_logged_in();
         $params = $_POST;
 
         $attributes = array(
@@ -73,21 +75,21 @@
           );
 
         $asiakas = new Asiakas($attributes);
-        $errors = array();    //$asiakas->errors(); <- validointi!!!
+        $errors = $asiakas->errors();
 
         if(count($errors) == 0){
           $asiakas->update();
-          Redirect::to('/asiakas/' . $asiakas->id);
+          Redirect::to('/asiakas/' . $asiakas->id, array('message' => "Asiakkaan muokkaus onnistui"));
         } else {
           View::make('/asiakas/' . $asiakas->id, array('errors' => $errors, 'attributes' => $attributes));
         }
 
       }
 
-
     	// destroy
 
     	public static function destroy($id){
+        BaseController::check_logged_in();
     		$asiakas = new Asiakas(array('id' => $id));
     		$asiakas->destroy();
     		Redirect::to('/asiakas', array('message' => "Asiakkaan poisto onnistui"));
@@ -96,6 +98,7 @@
     	// testimetodi
 
     	public static function sandbox(){
+        
       		$stigu = Asiakas::findById(1);
       		$asiakkaat = Asiakas::all();
 

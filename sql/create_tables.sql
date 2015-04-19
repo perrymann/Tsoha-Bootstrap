@@ -17,14 +17,9 @@ CREATE TABLE Kiinteisto(
 	postitoimipaikka varchar(50) NOT NULL
 );
 
-CREATE TABLE Ap_alue(
-	id SERIAL PRIMARY KEY NOT NULL,
-	nimi varchar(20) NOT NULL
-);	
-
 CREATE TABLE Autopaikka(
 	id SERIAL PRIMARY KEY NOT NULL,
-	ap_alue_id INTEGER REFERENCES Ap_alue(id),
+	kiinteisto_id INTEGER REFERENCES Kiinteisto(id),
 	nimi varchar(10) NOT NULL,
 	tyyppi INTEGER,
 	sahkopistoke boolean DEFAULT FALSE
@@ -35,22 +30,14 @@ CREATE TABLE Varaus(
 	autopaikka_id INTEGER REFERENCES Autopaikka(id),
 	asiakas_id INTEGER REFERENCES Asiakas(id),
 	aloitus_pvm DATE NOT NULL,
-	paattymis_pvm DATE,
-	varaus_pvm DATE NOT NULL,
-	irtisanomis_pvm DATE
+	paattymis_pvm DATE
 );
 
 CREATE TABLE Jonoentry(
 	id SERIAL PRIMARY KEY NOT NULL,
 	asiakas_id INTEGER REFERENCES Asiakas(id),
-	ap_alue_id INTEGER REFERENCES Ap_alue(id),
+	kiinteisto_id INTEGER REFERENCES Kiinteisto(id),
 	lisays_pvm DATE NOT NULL
-);
-
-CREATE TABLE Linkitys( -- linkittää kiinteistön ja autopaikka-alueen
-	id SERIAL PRIMARY KEY NOT NULL,
-	ap_alue_id INTEGER REFERENCES Ap_alue(id),
-	kiinteisto_id INTEGER REFERENCES Kiinteisto(id)
 );
 
 CREATE TABLE Kayttaja(

@@ -3,12 +3,19 @@
 
 {% import "macros/forms.html" as forms %}
 
+{% if message %}
+    <div class="alert alert-success">
+      <ul>
+        <li>{{message}}</li>
+      </ul>
+    </div>
+{% endif %}
+
+
 <h1>{{haettukiinteisto.nimi}}</h1>
   
 <p>{{haettukiinteisto.katuosoite}}</p>
 <p>{{haettukiinteisto.postinumero}} {{haettukiinteisto.postitoimipaikka}}</p>
-
-<!-- hakee makron -->
 
 <p>
   <a href="{{base_path}}/kiinteisto/{{haettukiinteisto.id}}/edit" class="btn btn-default">Muokkaa</a>
@@ -22,12 +29,37 @@
 <table class="table table-striped table-condensed">
     <thead>
       	<tr>
-      		<th>Tila</th>
-        	<th>Autopaikka</th>
+      		<th>Autopaikka</th>
 	        <th>Varaaja</th>
 	        <th>Varaus alkaa</th>
 	        <th>Varaus päättyy</th>
-	        <th>Lisätietoja</th>
-	    </tr>
-
+	        <th>Tyyppi</th>
+	        <th>Sähköpistoke</th>
+	        <th></th>
+        </tr>
+	</thead>
+	<tbody>
+		{% for autopaikka in autopaikat %}
+		<tr>  
+			<td><a href="{{base_path}}/autopaikka/{{autopaikka.id}}">{{autopaikka.nimi}}</td>
+	        <td><a href="{{base_path}}/asiakas/{{autopaikka.isReserved().getCustomerInfo().id}}">{{autopaikka.isReserved().getCustomerInfo().etunimi}} {{autopaikka.isReserved().getCustomerInfo().sukunimi}}</td>
+	        <td>{{autopaikka.isReserved().aloitus_pvm}}</td>
+	        <td>{{autopaikka.isReserved().paattymis_pvm}}</td>
+	        <td>{{autopaikka.defineType()}}</td>
+	        <td>{{autopaikka.containsSocket()}}</td>
+	        <td>
+		        <div class="btn-group">
+	  				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+	    				Toiminta <span class="caret"></span>
+	  				</button>
+	  					<ul class="dropdown-menu" role="menu">
+	    					<li><a href="{{base_path}}/autopaikka/{{autopaikka.id}}/varaus/new">Tee varaus</a></li>    <!--- autopaikka_id parametriksi -->
+						    <li><a href="{{base_path}}/autopaikka/{{autopaikka.id}}/varaus/edit"</a>Muokkaa/Irtisano</li>
+						</ul>
+				</div>
+			</td>
+    	</tr>
+    	{% endfor %}  
+    </tbody>
+</table>    	
 {% endblock %}

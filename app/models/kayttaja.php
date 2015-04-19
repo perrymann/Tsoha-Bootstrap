@@ -6,7 +6,19 @@ class Kayttaja extends BaseModel{
 
 	public function __construct($attributes){
 		parent::__construct($attributes);
+		$this->validators = array('validate_name', 'validate_username');
 	}
+
+	public function validate_username(){
+	    $errors = array();
+	    if($this->tunnus == '' || $this->tunnus == null){
+	      $errors[] = 'Käyttäjätunnus ei saa olla tyhjä!';
+	    }
+	    else if(strlen($this->nimi) < 5){
+	      $errors[] = 'Käyttäjätunnuksen pituuden tulla vähintään viisi merkkiä!';
+	    }
+	    return $errors;
+    }
 
 	public function save(){
 		$query = DB::connection()->prepare('INSERT INTO Kayttaja (nimi, tunnus, salasana, paakaytto) VALUES (:nimi, :tunnus, :salasana, :paakaytto) RETURNING id');
@@ -64,7 +76,7 @@ class Kayttaja extends BaseModel{
 
 	public function authenticate($tunnus, $salasana){
 		$query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE tunnus = :tunnus AND salasana = :salasana LIMIT 1', array('tunnus' => $tunnus, 'salasana' => $salasana));
-		$query->execute();
+		$query->execute(array('tunnus' => $tunnus, 'salasana' => $salasana));
 		$row = $query->fetch();
 
 		if ($row) {
@@ -80,5 +92,7 @@ class Kayttaja extends BaseModel{
 			return null;
 		}
 	}
+
+
 }
 

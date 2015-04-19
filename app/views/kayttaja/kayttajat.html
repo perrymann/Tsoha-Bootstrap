@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="get" action="" class="form-inline">
+    <div class="form group">
+      <input type="text" name="search" class="form-control" placeholder="Hakusana">
+    </div>
+    <button type="submit" class="btn btn-default">Hae käyttäjä</button>
+</form>
+
+<table class="table table-condensed table-hover">
+	<thead>
+      	<tr>
+	        <th>Nimi</th>
+	        <th>Tunnus</th>
+	        <th>Salasana</th>
+	        <th>Pääkäyttäjä</th>
+	    </tr>
+    </thead>
+    <tbody>
+    	{% for kayttaja in kayttajat %}
+    	<tr>
+    		<td><a href="{{base_path}}/kayttaja/{{kayttaja.id}}">{{kayttaja.nimi}}</td>
+	        <td>{{kayttaja.tunnus}}</td>
+	        <td>{{kayttaja.salasana}}</td>
+	        <td>{{kayttaja.paakaytto}}</td>
+    	</tr>
+    	{% endfor %}
+    </tbody> 	
+</table>
+<p >
+	<a href="{{base_path}}/kayttaja/new" class="btn btn-success">Lisää käyttäjä</a>
+</p>
+
+{% endblock %}

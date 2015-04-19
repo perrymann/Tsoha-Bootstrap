@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Tee varaus autopaikkaan {{autopaikka.id}} </h2>
+
+ <form method="post" action="{{base_path}}/autopaikka/{{autopaikka.id}}/varaus/new">
+
+	<div class="form-group">
+	  	<label>Varaaja</label>
+	  	<select class="form-control" name="asiakas">
+	    {% for asiakas in asiakkaat %}
+	      	<option value="{{asiakas.id}}">{{asiakas.sukunimi}}, {{asiakas.etunimi}}</option>
+	    {% endfor %}
+	  	</select>
+	  	<p>
+	  		<a href="{{base_path}}/asiakas/new" class="btn btn-default">Lisää uusi asiakas</a>
+		</p>
+	</div>
+	
+	<div class="form-group">
+      <label>Varaus alkaa (vvvv-kk-pp):</label>
+      <input type="text" name="aloitus_pvm" class="form-control" value="{{attributes.aloitus_pvm}}">
+    </div>
+
+    <div class="form-group">
+      <label>Varaus päättyy (vvvv-kk-pp):</label>
+      <input type="text" name="paattymis_pvm" class="form-control" value="{{attributes.paattymis_pvm}}">
+    </div>
+
+	<div class="form-group">
+      <button type="submit" class="btn btn-primary">Lisää varaus</button>
+    </div>
+ </form>
+
+
+{% endblock %}
+

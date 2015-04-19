@@ -31,7 +31,7 @@
 
     // yleinen validaattori
 
-    public function validate_minimum_string_length($string, $length){
+  public function validate_minimum_string_length($string, $length){
       $errors = array();
       if($string == '' || $string == null) {
         $errors[] = 'Syöte ei saa olla tyhjä!';
@@ -44,7 +44,7 @@
     // yleinen validaattori  
 
     }
-    public function validate_exact_string_length($string, $length){
+  public function validate_exact_string_length($string, $length){
       $errors = array();
       if($string == '' || $string == null) {
         $errors[] = 'Syöte ei saa olla tyhjä!';
@@ -54,5 +54,95 @@
       }
       return $errors;
     }
+
+  // validointi nimi-muuttujaan
+
+  public function validate_name(){
+    $errors = array();
+    if($this->nimi == '' || $this->nimi == null){
+      $errors[] = 'Nimi ei saa olla tyhjä!';
+    }
+    else if(strlen($this->nimi) < 3){
+      $errors[] = 'Nimen pituuden tulla vähintään kolme merkkiä!';
+    }
+
+    return $errors;
+  }  
+
+  public function validate_address(){
+    $errors = array();
+    if($this->katuosoite == '' || $this->katuosoite == null){
+      $errors[] = 'Katuosoite ei saa olla tyhjä!';
+    }
+    else if(strlen($this->katuosoite) < 3){
+      $errors[] = 'Katuosoitteen pituuden tulla vähintään kolme merkkiä!';
+    }
+
+    return $errors;
+  }
+
+  public function validate_zipcode(){
+    $errors = array();
+    if($this->postinumero == '' || $this->postinumero == null){
+      $errors[] = 'Postinumero on syötettävä!';
+    }
+    else if(ctype_digit($this->postinumero) && strlen($this->postinumero) == 5){
+      
+    } else {
+      $errors[] = 'Postinumeron pituuden pitää olla viisi numeraalia!';
+    }
+
+    return $errors;
+  }
+
+  public function validate_city(){
+    $errors = array();
+    if($this->postitoimipaikka == '' || $this->postitoimipaikka == null){
+      $errors[] = 'Postitoimipaikka on syötettävä!';
+    }
+    else if (strlen($this->postitoimipaikka) < 2){
+      $errors[] = 'Postitoimipaikan pituus on oltava vähintään kaksi merkkiä';
+    }
+    return $errors; 
+
+  }
+
+  public function validate_phone(){
+    $errors = array();
+    if($this->puhelinnumero == '' || $this->puhelinnumero == null){
+      $errors[] = 'Puhelinnumero on syötettävä!';
+    }
+    else if(ctype_digit($this->puhelinnumero) && strlen($this->puhelinnumero) > 4){
+      
+    } else {
+      $errors[] = 'Puhelinnumeron pituuden pitää olla viisi numeraalia!';
+    }
+
+    return $errors;
+  }
+
+  public function validate_firstName(){
+    $errors = array();
+    if($this->etunimi == '' || $this->etunimi == null){
+      $errors[] = 'Etunimi ei saa olla tyhjä!';
+    }
+    else if(strlen($this->etunimi) < 2){
+      $errors[] = 'Etunimen pituuden tulla vähintään kaksi merkkiä!';
+    }
+
+    return $errors;
+  }
+
+  public function validate_surName(){
+    $errors = array();
+    if($this->sukunimi == '' || $this->sukunimi == null){
+      $errors[] = 'Sukunimi ei saa olla tyhjä!';
+    }
+    else if(strlen($this->sukunimi) < 2){
+      $errors[] = 'Sukunimen pituuden tulla vähintään kaksi merkkiä!';
+    }
+
+    return $errors;
+  }
 
   }

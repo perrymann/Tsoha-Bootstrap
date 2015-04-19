@@ -6,6 +6,7 @@ class Asiakas extends BaseModel{
 
 	public function __construct($attributes){
     	parent::__construct($attributes);
+    	$this->validators = array('validate_firstName', 'validate_surName','validate_phone','validate_address', 'validate_zipcode', 'validate_city');
   	}
 
   	public function save(){
@@ -67,5 +68,6 @@ class Asiakas extends BaseModel{
 		$query->execute(array('id' => $this->id));
 
 	}
+    
 }
   

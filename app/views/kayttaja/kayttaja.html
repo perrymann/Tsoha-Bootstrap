@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+	
+	<!-- <form role="asiakastiedot"> -->
+
+		<h2>Käyttäjätiedot</h2>
+	<form method="post" action="{{base_path}}/kayttaja/{{kayttaja.id}}/edit" style="display: inline-block;">
+	  	<div class="form-group">
+	  		<label class="control-label" for="id:">Nimi:</label>
+		    <div class="controls">
+		    	<input id="nimi" name="nimi" type="text" value="{{kayttaja.nimi}}" />
+			</div>
+		</div>	
+	  	<div class="form-group">
+	  		<label class="control-label" for="tunnus:">Tunnus:</label>
+		    <div class="controls">
+		    	<input id="tunnus" name="tunnus" type="text" value="{{kayttaja.tunnus}}" />
+			</div>
+		</div>
+		<div class="form-group">
+		    <label class="control-label" for="salasana:">Salasana:</label>
+		    <div class="controls">
+		    	<input id="salasana" name="salasana" type="password" value="{{kayttaja.salasana}}" />
+		    </div>
+		</div>   
+		<div class="form-group">
+	  		<label class="control-label" for="paakaytto:">Pääkäyttö:</label>
+		    <div class="controls">
+		    	<input id="paakaytto" name="paakaytto" type="checkbox" value="{{kayttaja.paakaytto}}" />
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Päivitä</button>
+	</form>
+
+	<form method="post" action="{{base_path}}/kayttaja/{{kayttaja.id}}/destroy" style="display: inline-block;">
+  		<button type="submit" class="btn btn-danger">Poista käyttäjä</button>
+	</form>	 	
+
+{% endblock %}

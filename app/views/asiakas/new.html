@@ -2,41 +2,51 @@
 {% block content %}
   <h1>Lisää uusi asiakas järjestelmään</h1>
 
+   {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  
   <form method="post" action="{{base_path}}/asiakas">
     
     <div class="form-group">
       <label>Etunimi</label>
-      <input type="text" name="etunimi" class="form-control">
+      <input type="text" name="etunimi" class="form-control" value="{{attributes.etunimi}}">
     </div>
 
     <div class="form-group">
       <label>Sukunimi</label>
-      <input type="text" name="sukunimi" class="form-control">
+      <input type="text" name="sukunimi" class="form-control" value="{{attributes.sukunimi}}">
     </div>
     
     <div class="form-group">
       <label>Puhelinnumero</label>
-      <input type="text" name="puhelinnumero" class="form-control">
+      <input type="text" name="puhelinnumero" class="form-control" value="{{attributes.puhelinnumero}}">
     </div>
 
     <div class="form-group">
       <label>Email</label>
-      <input type="text" name="email" class="form-control">
+      <input type="text" name="email" class="form-control" value="{{attributes.email}}">
     </div>
 
     <div class="form-group">
       <label>Katuosoite</label>
-      <input type="text" name="katuosoite" class="form-control">
+      <input type="text" name="katuosoite" class="form-control" value="{{attributes.katuosoite}}">
     </div>
 
     <div class="form-group">
       <label>Postinumero</label>
-      <input type="text" name="postinumero" class="form-control">
+      <input type="text" name="postinumero" class="form-control" value="{{attributes.postinumero}}">
     </div>
 
     <div class="form-group">
       <label>Postitoimipaikka</label>
-      <input type="text" name="postitoimipaikka" class="form-control">
+      <input type="text" name="postitoimipaikka" class="form-control" value="{{attributes.postitoimipaikka}}">
     </div>
 
     <div class="form-group">

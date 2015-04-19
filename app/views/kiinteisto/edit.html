@@ -2,9 +2,18 @@
 {% block content %}
   <h1>Muokkaa kiinteistöä</h1>
 
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
   <form method="post" action="{{base_path}}/kiinteisto/{{attributes.id}}/edit">
     
-
     <div class="form-group">
         <label class="control-label" for="nimi:">Kiinteistön nimi:</label>
         <div class="controls">

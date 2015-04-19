@@ -2,16 +2,13 @@
 {% block content %}
 <h1>Kiinteistöt</h1>
 
-<form role="suodata" method="get" action="{{base_path}}/kiinteisto">
-	<div class"row">
-  	  <div class="form-group col-lg-4">
-      	<input type="text" class="form-control" id="sort" placeholder="Suodata">
-  		</div>
-  		<div class="form-group">
-        <button type="submit" class="btn btn-primary">Hae</button>
-      </div>
-  </div>
-</form>  
+<form method="get" action="" class="form-inline">
+    <div class="form group">
+      <input type="text" name="search" class="form-control" placeholder="Hakusana">
+    </div>
+
+    <button type="submit" class="btn btn-default">Hae kiinteistöä</button>
+</form>
 
 <table class="table table-condensed table-hover">
 	<thead>

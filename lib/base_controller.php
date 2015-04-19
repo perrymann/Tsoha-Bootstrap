@@ -14,8 +14,19 @@
     }
 
     public static function check_logged_in(){
-      // Toteuta kirjautumisen tarkistus tähän.
-      // Jos käyttäjä ei ole kirjautunut sisään, ohjaa hänet toiselle sivulle (esim. kirjautumissivulle).
+      if(!isset($_SESSION['kayttaja'])){
+        Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään'));
+      }
     }
 
+    public static function check_admin(){
+      if(isset($_SESSION['kayttaja'])){
+        $kayttaja_id = $_SESSION['kayttaja'];
+        $kayttaja = Kayttaja::findById($kayttaja_id);
+
+      if (!$kayttaja->paakaytto == 1){
+        Redirect::to('/', array('message' => 'Ei pääkäyttöoikeuksia')); 
+        }
+      }  
+    }
   }
