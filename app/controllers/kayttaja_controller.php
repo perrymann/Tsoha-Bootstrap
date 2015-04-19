@@ -26,23 +26,27 @@ class KayttajaController extends BaseController{
     }
 
     public static function index(){
+    	BaseController::check_logged_in();
     	BaseController::check_admin();
     	$kayttajat = Kayttaja::all();
     	View::make('kayttaja/kayttajat.html', array('kayttajat' => $kayttajat));
     }
 
     public static function kayttaja($id){
+    	BaseController::check_logged_in();
     	BaseController::check_admin();
     	$kayttaja = Kayttaja::findById($id);
     	View::make('kayttaja/kayttaja.html', array('kayttaja' => $kayttaja));
     }
 
     public static function create(){
+    	BaseController::check_logged_in();
     	BaseController::check_admin();
     	View::make('kayttaja/new.html');
     }
 
     public static function store(){
+    	BaseController::check_logged_in();
     	BaseController::check_admin();
     	$params = $_POST;
 

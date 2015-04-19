@@ -25,7 +25,7 @@
         $kayttaja = Kayttaja::findById($kayttaja_id);
 
       if (!$kayttaja->paakaytto == 1){
-        Redirect::to('/', array('message' => 'Ei pääkäyttöoikeuksia')); 
+        Redirect::to('/login', array('message' => 'Ei pääkäyttöoikeuksia')); 
         }
       }  
     }

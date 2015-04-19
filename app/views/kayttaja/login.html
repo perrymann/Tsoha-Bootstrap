@@ -3,7 +3,16 @@
   <h1>Kirjaudu sisään</h1>
 
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
- 
+  
+  {% if message %}
+    <div class="alert alert-danger">
+      <ul>
+        <li>{{message}}</li>
+      </ul>
+    </div>
+    {% endif %}
+
+
   <form method="post" action="{{base_path}}/login">
 
     <!-- Tekstikenttä käyttäjätunnukselle -->

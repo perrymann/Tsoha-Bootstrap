@@ -7,6 +7,7 @@
     }
 
     public static function yllapito(){
+      BaseController::check_logged_in();
       BaseController::check_admin();
       View::make('index/yllapito.html');
     }
