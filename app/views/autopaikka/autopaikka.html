@@ -1,9 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% import "macros/forms.html" as forms %}
+
 <h2>Autopaikka {{autopaikka.nimi}}</h2>
+<p><a href="{{base_path}}/kiinteisto/{{autopaikka.kiinteisto_id}}">Takaisin autopaikkalistaan</a></p>
+<p>Tyyppi: {{autopaikka.defineType()}}</p>
+<p>Sähköpistoke: {{autopaikka.containsSocket()}}</p>
+
+{% if user_logged_in.paakaytto %}
+    <p>
+      <a href="{{base_path}}/autopaikka/{{autopaikka.id}}/edit" class="btn btn-default">Muokkaa</a>
+    </p>
+{{forms.destroy_button("#{base_path}/autopaikka/#{autopaikka.id}/destroy")}} 
+
+{% endif %}
 
 <h3>Kaikki varaukset</h3>
+
+{% if message %}
+    <div class="alert alert-success">
+      <ul>
+        <li>{{message}}</li>
+      </ul>
+    </div>
+  {% endif %}
 
 <table class="table table-striped table-condensed">
     <thead>
@@ -11,6 +32,7 @@
       		<th>Varaaja</th>
         	<th>Varaus alkaa</th>
 	        <th>Varaus päättyy</th>
+            <th></th>
 	        </tr>
 	</thead>
 	<tbody>
@@ -19,12 +41,16 @@
 			<td>{{varaus.getCustomerInfo().sukunimi}}, {{varaus.getCustomerInfo().etunimi}} </td> 
 	        <td>{{varaus.aloitus_pvm}}</td>
 	        <td>{{varaus.paattymis_pvm}}</td>
-    	</tr>
+            <td>
+    	        {% if varaus.willBeTaken()%}
+                <p >
+                    <a href="{{base_path}}/varaus/{{varaus.id}}" class="btn btn-danger btn-sm">Muokkaa tulevaa varausta</a>
+                </p>
+                {% endif %}
+            </td>    
+        </tr>
     	{% endfor %}  
     </tbody>
 </table>    
-
-
-
 
 {% endblock %}

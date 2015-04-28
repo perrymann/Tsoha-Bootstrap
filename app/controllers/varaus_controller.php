@@ -2,13 +2,18 @@
 
 	class VarausController extends BaseController {
 
-		// tallentaa varauksen
+		public static function varaus($id){
+			BaseController::check_logged_in();
+			$varaus = Varaus::findById($id);
+			View::make('varaus/varaus.html', array('varaus' => $varaus));
+		}
+
 		public static function store($autopaikka_id){
 			BaseController::check_logged_in();
 			$params = $_POST;
 			$asiakas_id = $params['asiakas'];
 
-			if ($params['paattymis_pvm'] === ""){
+			if ($params['paattymis_pvm'] === ''){
 				$paattymis_pvm = null;
 			} else {
 				$paattymis_pvm = $params['paattymis_pvm'];
@@ -21,14 +26,17 @@
 				'paattymis_pvm' => $paattymis_pvm
 				);
 			
+
 			$varaus = new Varaus($attributes);
-			$errors = array();  //$errors = $varaus->errors();
+			$errors = $varaus->errors();
 
 			if(count($errors) == 0){
 				$varaus->save();
-				Redirect::to('/kiinteisto');
+				Redirect::to('/autopaikka/' . $varaus->autopaikka_id, array('message' => "Varauksen luonti onnistui"));
 			} else {
-				View::make('/varaus/new.html', array('errors' => $errors, 'attributes' => $attributes) );
+				$asiakkaat = Asiakas::all();
+				$autopaikka = Autopaikka::findById($autopaikka_id);
+				View::make('/varaus/new.html', array('errors' => $errors, 'attributes' => $attributes, 'asiakkaat' => $asiakkaat, 'autopaikka' => $autopaikka));
 			}
 		}
 
@@ -43,26 +51,39 @@
 			BaseController::check_logged_in();
 			$params = $_POST;
 
+			if ($params['paattymis_pvm'] === ''){
+				$paattymis_pvm = null;
+			} else {
+				$paattymis_pvm = $params['paattymis_pvm'];
+			}
+
 			$attributes = array(
 				'id' => $id,
 				'autopaikka_id' => $params['autopaikka_id'], 
 				'asiakas_id' => $params['asiakas_id'], 
 				'aloitus_pvm' => $params['aloitus_pvm'], 
-				'paattymis_pvm' => $params['paattymis_pvm']
+				'paattymis_pvm' => $paattymis_pvm
 				);
 
-			$varaus = new Kiinteisto($attributes);
+			$varaus = new Varaus($attributes);
 			$errors = $varaus->errors();
 
 			if (count($errors) > 0) {
-				View::make('/varaus/new.html', array('errors' => $errors, 'attributes' => $attributes) );
+				View::make('/varaus/varaus.html', array('errors' => $errors, 'varaus' => $attributes) );
 			} else {
   				$varaus->update();
 
-  				// tämä pitää vielä merkitä näkymään sitten kun metodi toimii...
-  				Redirect::to('/autopaikka/' . $kiinteisto->id, array('message' => "Varauksen muokkaus onnistui"));
+				Redirect::to('/autopaikka/' . $varaus->autopaikka_id, array('message' => "Varauksen muokkaus onnistui"));
   			}
 
+		}
+
+		public static function destroy($id){
+			BaseController::check_logged_in();
+			$apu = Varaus::findById($id)->autopaikka_id;
+			$varaus = new Varaus(array('id' => $id));
+			$varaus->destroy();
+			Redirect::to('/autopaikka/' . $apu, array('message' => 'Varauksen poisto onnistui!'));
 		}
 
 

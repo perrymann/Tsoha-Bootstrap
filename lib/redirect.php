@@ -15,4 +15,10 @@
       exit();
     }
 
+    // häkkerointi
+    public static function back() {
+      $_SESSION['originalReferer'] = $_SERVER['HTTP_REFERER'];
+      header("Location: ".$_SESSION['originalReferer']);
+      exit();
+    }
   }

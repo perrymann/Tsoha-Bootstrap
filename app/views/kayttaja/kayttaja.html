@@ -2,9 +2,19 @@
 {% block content %}
 	
 	<!-- <form role="asiakastiedot"> -->
+	
+{% if errors %}
+<div class="alert alert-danger">
+  	<ul>
+	    {% for error in errors %}
+	    <li>{{error}}</li>
+	    {% endfor %}
+  	</ul>
+</div>
+{% endif %}
 
-		<h2>Käyttäjätiedot</h2>
-	<form method="post" action="{{base_path}}/kayttaja/{{kayttaja.id}}/edit" style="display: inline-block;">
+<h2>Käyttäjätiedot</h2>
+	<form method="post" action="{{base_path}}/kayttaja/{{kayttaja.id}}" style="display: inline-block;">
 	  	<div class="form-group">
 	  		<label class="control-label" for="id:">Nimi:</label>
 		    <div class="controls">
@@ -26,8 +36,8 @@
 		<div class="form-group">
 	  		<label class="control-label" for="paakaytto:">Pääkäyttö:</label>
 		    <div class="controls">
-		    	<input id="paakaytto" name="paakaytto" type="checkbox" value="{{kayttaja.paakaytto}}" />
-			</div>
+		    	<input id="paakaytto" name="paakaytto" type="checkbox" value="0"/>
+		    </div>
 		</div>
 		<button type="submit" class="btn btn-primary">Päivitä</button>
 	</form>

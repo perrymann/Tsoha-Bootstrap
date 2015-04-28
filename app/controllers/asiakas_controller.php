@@ -14,8 +14,8 @@
 
 		public static function asiakastiedot($id){
       BaseController::check_logged_in();
-			$haettuasiakas = Asiakas::findById($id);
-      		View::make('asiakas/asiakas.html', array('haettuasiakas' => $haettuasiakas));
+			$asiakas = Asiakas::findById($id);
+      		View::make('asiakas/asiakas.html', array('asiakas' => $asiakas));
     	}
 
       // tallentaa
@@ -23,6 +23,7 @@
       public static function store(){
         BaseController::check_logged_in();
         $params = $_POST;
+        
 
         $attributes = array(
           'etunimi' => $params['etunimi'],
@@ -79,9 +80,9 @@
 
         if(count($errors) == 0){
           $asiakas->update();
-          Redirect::to('/asiakas/' . $asiakas->id, array('message' => "Asiakkaan muokkaus onnistui"));
+          Redirect::to('/asiakas', array('message' => "Asiakkaan muokkaus onnistui"));
         } else {
-          View::make('/asiakas/' . $asiakas->id, array('errors' => $errors, 'attributes' => $attributes));
+          View::make('/asiakas/asiakas.html', array('errors' => $errors, 'asiakas' => $attributes));
         }
 
       }

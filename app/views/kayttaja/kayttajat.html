@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
-<form method="get" action="" class="form-inline">
-    <div class="form group">
-      <input type="text" name="search" class="form-control" placeholder="Hakusana">
+{% if message %}
+    <div class="alert alert-success">
+      <ul>
+        <li>{{message}}</li>
+      </ul>
     </div>
-    <button type="submit" class="btn btn-default">Hae käyttäjä</button>
-</form>
+{% endif %}
 
 <table class="table table-condensed table-hover">
 	<thead>
@@ -23,7 +24,7 @@
     		<td><a href="{{base_path}}/kayttaja/{{kayttaja.id}}">{{kayttaja.nimi}}</td>
 	        <td>{{kayttaja.tunnus}}</td>
 	        <td>{{kayttaja.salasana}}</td>
-	        <td>{{kayttaja.paakaytto}}</td>
+	        <td>{{kayttaja.isAdmin()}}</td>
     	</tr>
     	{% endfor %}
     </tbody> 	

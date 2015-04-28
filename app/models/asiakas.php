@@ -43,7 +43,7 @@ class Asiakas extends BaseModel{
 		$row = $query->fetch();
 
 		if($row) {
-			$haettuasiakas = new Asiakas(array(
+			$asiakas = new Asiakas(array(
 	        'id' => $row['id'],
 	        'etunimi' => $row['etunimi'],
 	        'sukunimi' => $row['sukunimi'],
@@ -53,7 +53,7 @@ class Asiakas extends BaseModel{
 	        'postinumero' => $row['postinumero'],
 	        'postitoimipaikka' => $row['postitoimipaikka']
       		));
-      		return $haettuasiakas;
+      		return $asiakas;
 		}	
       	return null;
     }

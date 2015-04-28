@@ -2,6 +2,14 @@
 {% block content %}
 <h1>Asiakkaat</h1>
 
+  {% if message %}
+    <div class="alert alert-success">
+      <ul>
+        <li>{{message}}</li>
+      </ul>
+    </div>
+  {% endif %}
+
 <table class="table table-condensed table-hover">
 	<thead>
       	<tr>
@@ -23,9 +31,9 @@
     	</tr>
     	{% endfor %}
     </tbody> 	
- </table>
+  </table>
 
- <p >
+<p >
   <a href="{{base_path}}/asiakas/new" class="btn btn-success">Lisää asiakas</a>
 </p>
 

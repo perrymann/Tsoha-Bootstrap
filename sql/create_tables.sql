@@ -19,7 +19,7 @@ CREATE TABLE Kiinteisto(
 
 CREATE TABLE Autopaikka(
 	id SERIAL PRIMARY KEY NOT NULL,
-	kiinteisto_id INTEGER REFERENCES Kiinteisto(id),
+	kiinteisto_id INTEGER REFERENCES Kiinteisto(id) ON DELETE CASCADE,
 	nimi varchar(10) NOT NULL,
 	tyyppi INTEGER,
 	sahkopistoke boolean DEFAULT FALSE
@@ -27,17 +27,10 @@ CREATE TABLE Autopaikka(
 
 CREATE TABLE Varaus(
 	id SERIAL PRIMARY KEY NOT NULL,
-	autopaikka_id INTEGER REFERENCES Autopaikka(id),
-	asiakas_id INTEGER REFERENCES Asiakas(id),
+	autopaikka_id INTEGER REFERENCES Autopaikka(id) ON DELETE CASCADE,
+	asiakas_id INTEGER REFERENCES Asiakas(id) ON DELETE CASCADE,
 	aloitus_pvm DATE NOT NULL,
 	paattymis_pvm DATE
-);
-
-CREATE TABLE Jonoentry(
-	id SERIAL PRIMARY KEY NOT NULL,
-	asiakas_id INTEGER REFERENCES Asiakas(id),
-	kiinteisto_id INTEGER REFERENCES Kiinteisto(id),
-	lisays_pvm DATE NOT NULL
 );
 
 CREATE TABLE Kayttaja(

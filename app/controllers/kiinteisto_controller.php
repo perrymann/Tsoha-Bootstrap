@@ -7,7 +7,7 @@
 		public static function index() {
 			BaseController::check_logged_in();
 			// $params = $_GET;
-			// $options = 
+			// $options = array()
 
 			// if(isset($params['search'])){
    //   			$options['search'] = $params['search'];
@@ -30,6 +30,7 @@
 
 		public static function store(){
 			BaseController::check_logged_in();
+			BaseController::check_admin();
 			$params = $_POST;
 
 			$attributes = array(
@@ -55,6 +56,7 @@
 
 		public static function create() {
 			BaseController::check_logged_in();
+			BaseController::check_admin();
 			View::make('kiinteisto/new.html');
 		}
 
@@ -62,6 +64,7 @@
 
 		public static function edit($id){
 			BaseController::check_logged_in();
+			BaseController::check_admin();
   			$kiinteisto = Kiinteisto::findById($id);
   			View::make('kiinteisto/edit.html', array('attributes' => $kiinteisto));
   		}
@@ -70,6 +73,7 @@
 
   		public static function update($id){
   			BaseController::check_logged_in();
+  			BaseController::check_admin();
   			$params = $_POST;
 
   			$attributes = array(
@@ -96,6 +100,7 @@
 
   		public static function destroy($id){
   			BaseController::check_logged_in();
+  			BaseController::check_admin();
   			$kiinteisto = new Kiinteisto(array('id' => $id));
   			$kiinteisto->destroy();
   			Redirect::to('/kiinteisto', array('message' => "Kiinteistön poistaminen onnistui"));

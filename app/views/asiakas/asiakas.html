@@ -4,14 +4,6 @@
 	<!-- <form role="asiakastiedot"> -->
 <h2>Asiakastiedot</h2>
 
-	{% if message %}
-    <div class="alert alert-success">
-      <ul>
-        <li>{{message}}</li>
-      </ul>
-    </div>
-  	{% endif %}
-
   	{% if errors %}
     <div class="alert alert-danger">
       <ul>
@@ -20,63 +12,64 @@
         {% endfor %}
       </ul>
     </div>
-  {% endif %}
+   {% endif %}
 
-	<form method="post" action="{{base_path}}/asiakas/{{haettuasiakas.id}}/edit" style="display: inline-block;">
+	<form method="post" action="{{base_path}}/asiakas/{{asiakas.id}}" style="display: inline-block;">
 	  	<div class="form-group">
 	  		<label class="control-label" for="id:">Asiakastunnus:</label>
 		    <div class="controls">
-		    	<input disabled="disabled" id="asiakastunnus" name="if" type="text" value="{{haettuasiakas.id}}" />
+		    	<input disabled="disabled" id="asiakastunnus" name="if" type="text" value="{{asiakas.id}}" />
 			</div>
 		</div>	
 	  	<div class="form-group">
 	  		<label class="control-label" for="etunimi:">Etunimi:</label>
 		    <div class="controls">
-		    	<input id="etunimi" name="etunimi" type="text" value="{{haettuasiakas.etunimi}}" />
+		    	<input id="etunimi" name="etunimi" type="text" value="{{asiakas.etunimi}}" />
 			</div>
 		</div>
 		<div class="form-group">
 		    <label class="control-label" for="sukunimi:">Sukunimi:</label>
 		    <div class="controls">
-		    	<input id="sukunimi" name="sukunimi" type="text" value="{{haettuasiakas.sukunimi}}" />
+		    	<input id="sukunimi" name="sukunimi" type="text" value="{{asiakas.sukunimi}}" />
 		    </div>
 		</div>   
 		<div class="form-group">
 	  		<label class="control-label" for="katuosoite:">Katuosoite:</label>
 		    <div class="controls">
-		    	<input id="katuosoite" name="katuosoite" type="text" value="{{haettuasiakas.katuosoite}}" />
+		    	<input id="katuosoite" name="katuosoite" type="text" value="{{asiakas.katuosoite}}" />
 			</div>
 		</div>
 		<div class="form-group">
 		    <label class="control-label" for="postinumero:">Postinumero:</label>
 		    <div class="controls">
-		    	<input id="postinumero" name="postinumero" type="text" value="{{haettuasiakas.postinumero}}" />
+		    	<input id="postinumero" name="postinumero" type="text" value="{{asiakas.postinumero}}" />
 		    </div>
 		</div>
 		<div class="form-group"> 	
 		    <label class="control-label" for="postitoimipaikka:">Postitoimipaikka:</label>
 			<div class="controls">
-		    	<input id="postitoimipaikka" name="postitoimipaikka" type="text" value="{{haettuasiakas.postitoimipaikka}}" />
+		    	<input id="postitoimipaikka" name="postitoimipaikka" type="text" value="{{asiakas.postitoimipaikka}}" />
 		    </div>
 		</div>    
 		<div class="form-group"> 	
 		    <label class="control-label" for="puhelinnumero:">Puhelin:</label>
 			<div class="controls">
-		    	<input id="puhelin" name="puhelinnumero" type="text" value="{{haettuasiakas.puhelinnumero}}" />
+		    	<input id="puhelin" name="puhelinnumero" type="text" value="{{asiakas.puhelinnumero}}" />
 		    </div>
 		</div> 
 		<div class="form-group"> 	
 		    <label class="control-label" for="email:">Email:</label>
 			<div class="controls">
-		    	<input id="email" name="email" type="text" value="{{haettuasiakas.email}}" />
+		    	<input id="email" name="email" type="text" value="{{asiakas.email}}" />
 		    </div>
 		</div> 
 	
 		<button type="submit" class="btn btn-primary">Päivitä</button>
 	</form>
 
-	<form method="post" action="{{base_path}}/asiakas/{{haettuasiakas.id}}/destroy" style="display: inline-block;">
+	<form method="post" action="{{base_path}}/asiakas/{{asiakas.id}}/destroy" style="display: inline-block;">
   		<button type="submit" class="btn btn-danger">Poista asiakas</button>
 	</form>	 
 
 {% endblock %}
+

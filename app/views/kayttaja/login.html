@@ -5,13 +5,12 @@
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
   
   {% if message %}
-    <div class="alert alert-danger">
+    <div class="alert alert-success">
       <ul>
         <li>{{message}}</li>
       </ul>
     </div>
     {% endif %}
-
 
   <form method="post" action="{{base_path}}/login">
 

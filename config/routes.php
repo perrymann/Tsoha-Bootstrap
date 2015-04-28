@@ -68,7 +68,7 @@
     AsiakasController::sandbox();
   });
 
-  $routes->post('/asiakas/:id/edit', function($id){
+  $routes->post('/asiakas/:id', function($id){
     AsiakasController::update($id);
   });
 
@@ -102,10 +102,43 @@
     KayttajaController::kayttaja($id);
   });
   
+  $routes->post('/kayttaja/:id', function($id){
+    KayttajaController::update($id);
+  });
+
+  $routes->post('/kayttaja/:id/destroy', function($id){
+    KayttajaController::destroy($id);
+  });
+
+
   // AutopaikkaController
 
+  $routes->get('/autopaikka', function(){
+    AutopaikkaController::index();
+  });
+
+  $routes->post('/autopaikka', function(){
+    AutopaikkaController::store();
+  });
+
+  $routes->get('/autopaikka/new', function(){
+    AutopaikkaController::create();
+  });
+ 
   $routes->get('/autopaikka/:id', function($id){
     AutopaikkaController::autopaikka($id);
+  });
+
+   $routes->get('/autopaikka/:id/edit', function($id){
+    AutopaikkaController::edit($id);
+  });
+
+  $routes->post('/autopaikka/:id/edit', function($id){
+    AutopaikkaController::update($id);
+  });
+
+  $routes->post('/autopaikka/:id/destroy', function($id){
+    AutopaikkaController::destroy($id);
   });
 
   // Varauskontroller
@@ -118,8 +151,14 @@
     VarausController::store($id);
   });
 
+  $routes->get('/varaus/:id', function($id){
+    VarausController::varaus($id);
+  });
 
+  $routes->post('/varaus/:id', function($id){
+    VarausController::update($id);
+  });
 
-  
-
-
+  $routes->post('/varaus/:id/destroy', function($id){
+    VarausController::destroy($id);
+  });

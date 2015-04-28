@@ -14,7 +14,7 @@ class Kayttaja extends BaseModel{
 	    if($this->tunnus == '' || $this->tunnus == null){
 	      $errors[] = 'Käyttäjätunnus ei saa olla tyhjä!';
 	    }
-	    else if(strlen($this->nimi) < 5){
+	    else if(strlen($this->tunnus) < 5){
 	      $errors[] = 'Käyttäjätunnuksen pituuden tulla vähintään viisi merkkiä!';
 	    }
 	    return $errors;
@@ -93,6 +93,12 @@ class Kayttaja extends BaseModel{
 		}
 	}
 
-
+	public function isAdmin() {
+		if ($this->paakaytto == TRUE){
+			return "Kyllä";
+		} else {
+			return "Ei";
+		}
+	}
 }
 

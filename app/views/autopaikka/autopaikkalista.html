@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<table class="table table-condensed table-hover">
+	<thead>
+      	<tr>
+	        <th>ID</th>
+	        <th>Kiinteistö</th>
+	        <th>Autopaikka</th>
+	        <th>Tyyppi</th>
+	        <th>Sähköpistoke</th>
+      	</tr>
+    </thead>
+    <tbody>
+    	{% for autopaikka in autopaikat %}
+    	<tr>
+    		<td>{{autopaikka.id}}</td>
+    		<td>{{autopaikka.kiinteisto_id}}</td>
+    		<td><a href="{{base_path}}/autopaikka/{{autopaikka.id}}">{{autopaikka.nimi}}</td>
+	        <td>{{autopaikka.defineType()}}</td>
+	        <td>{{autopaikka.containsSocket()}}</td>
+	    </tr>
+    	{% endfor %}
+    </tbody> 	
+ </table>
+<p >
+	<a href="{{base_path}}/autopaikka/new" class="btn btn-success">Lisää autopaikka</a>
+</p>
+
+{% endblock %}
