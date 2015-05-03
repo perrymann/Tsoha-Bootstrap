@@ -2,21 +2,21 @@
 
 class Autopaikka extends BaseModel{
 	
-	public $id, $kiinteisto_id, $nimi, $tyyppi, $sahkopistoke;
+	public $id, $kiinteisto_id, $numero, $tyyppi, $sahkopistoke;
 
 	public function __construct($attributes) {
 		parent::__construct($attributes);
-		$this->validators = array('validate_name');
+		$this->validators = array('validate_number');
 	}
 
-	public function validate_name(){
+	public function validate_number(){
     	$errors = array();
-    	if($this->nimi == '' || $this->nimi == null){
-      		$errors[] = 'Nimi ei saa olla tyhjä!';
+    	if($this->numero == '' || $this->numero == null){
+      		$errors[] = 'Numero ei saa olla tyhjä!';
     	} 
     	$autopaikat = Autopaikka::all();
     	foreach($autopaikat as $autopaikka) {
-    		if($this->nimi == $autopaikka->nimi && $this->kiinteisto_id == $autopaikka->kiinteisto_id){
+    		if($this->numero == $autopaikka->numero && $this->kiinteisto_id == $autopaikka->kiinteisto_id && $this->id != $autopaikka->id) {
     			$errors[] = 'Nimi on jo varattu!';
     		}
     	}
@@ -24,15 +24,15 @@ class Autopaikka extends BaseModel{
     } 
 
 	public function save(){
-		$query = DB::connection()->prepare('INSERT INTO Autopaikka (kiinteisto_id, nimi, tyyppi, sahkopistoke) VALUES (:kiinteisto_id, :nimi, :tyyppi, :sahkopistoke) RETURNING id');
-		$query->execute(array('kiinteisto_id' => $this->kiinteisto_id, 'nimi' => $this->nimi, 'tyyppi' => $this->tyyppi, 'sahkopistoke' => $this->sahkopistoke));
+		$query = DB::connection()->prepare('INSERT INTO Autopaikka (kiinteisto_id, numero, tyyppi, sahkopistoke) VALUES (:kiinteisto_id, :numero, :tyyppi, :sahkopistoke) RETURNING id');
+		$query->execute(array('kiinteisto_id' => $this->kiinteisto_id, 'numero' => $this->numero, 'tyyppi' => $this->tyyppi, 'sahkopistoke' => $this->sahkopistoke));
 		$row = $query->fetch();
 		$this->id = $row['id'];
 	}
 
 	public function update(){
-		$query = DB::connection()->prepare('UPDATE Autopaikka SET kiinteisto_id = :kiinteisto_id, nimi = :nimi, tyyppi = :tyyppi, sahkopistoke = :sahkopistoke WHERE id = :id');
-		$query->execute(array('id' => $this->id, 'kiinteisto_id' => $this->kiinteisto_id, 'tyyppi' => $this->tyyppi, 'sahkopistoke' => $this->sahkopistoke));
+		$query = DB::connection()->prepare('UPDATE Autopaikka SET kiinteisto_id = :kiinteisto_id, numero = :numero, tyyppi = :tyyppi, sahkopistoke = :sahkopistoke WHERE id = :id');
+		$query->execute(array('id' => $this->id, 'kiinteisto_id' => $this->kiinteisto_id, 'numero' => $this->numero, 'tyyppi' => $this->tyyppi, 'sahkopistoke' => $this->sahkopistoke));
 	}
 
 	public function destroy(){
@@ -50,7 +50,7 @@ class Autopaikka extends BaseModel{
 			$autopaikat[] = new Autopaikka(array(
 			'id' => $row['id'],
 			'kiinteisto_id' => $row['kiinteisto_id'],
-			'nimi' => $row['nimi'],
+			'numero' => $row['numero'],
 			'tyyppi' => $row['tyyppi'],
 			'sahkopistoke' => $row['sahkopistoke']
 			));
@@ -67,7 +67,7 @@ class Autopaikka extends BaseModel{
 			$autopaikka = new Autopaikka(array(
 				'id' => $row['id'],
 				'kiinteisto_id' => $row['kiinteisto_id'],
-				'nimi' => $row['nimi'],
+				'numero' => $row['numero'],
 				'tyyppi' => $row['tyyppi'],
 				'sahkopistoke' => $row['sahkopistoke']
 				));

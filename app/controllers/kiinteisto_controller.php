@@ -6,13 +6,6 @@
 
 		public static function index() {
 			BaseController::check_logged_in();
-			// $params = $_GET;
-			// $options = array()
-
-			// if(isset($params['search'])){
-   //   			$options['search'] = $params['search'];
-   //  		}
-			// $kiinteistot = Kiinteisto::all($options);
 			$kiinteistot = Kiinteisto::all();
 			View::make('kiinteisto/kiinteistolista.html', array('kiinteistot' => $kiinteistot));
 		}

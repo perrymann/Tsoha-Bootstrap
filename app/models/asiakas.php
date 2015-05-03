@@ -6,7 +6,7 @@ class Asiakas extends BaseModel{
 
 	public function __construct($attributes){
     	parent::__construct($attributes);
-    	$this->validators = array('validate_firstName', 'validate_surName','validate_phone','validate_address', 'validate_zipcode', 'validate_city');
+    	$this->validators = array('validate_firstName', 'validate_surName','validate_phone','validate_address', 'validate_zipcode', 'validate_city', 'validate_email');
   	}
 
   	public function save(){

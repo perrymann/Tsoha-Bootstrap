@@ -8,10 +8,6 @@
    HelloWorldController::yllapito();
   });
 
-  // $routes->get('/sandbox', function(){
-  //   HelloWorldController::sandbox();
-  // });
-
   // -------- Kiinteistokontroller -------------------
    
   $routes->get('/kiinteisto', function(){

@@ -26,7 +26,6 @@
 				'paattymis_pvm' => $paattymis_pvm
 				);
 			
-
 			$varaus = new Varaus($attributes);
 			$errors = $varaus->errors();
 
@@ -85,9 +84,4 @@
 			$varaus->destroy();
 			Redirect::to('/autopaikka/' . $apu, array('message' => 'Varauksen poisto onnistui!'));
 		}
-
-
-
-
-		
 	}

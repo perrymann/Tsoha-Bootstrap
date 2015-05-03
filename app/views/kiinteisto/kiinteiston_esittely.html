@@ -19,7 +19,7 @@
 
 {% if user_logged_in.paakaytto %}
 	<p>
-	  <a href="{{base_path}}/kiinteisto/{{haettukiinteisto.id}}/edit" class="btn btn-default">Muokkaa</a>
+	  <a href="{{base_path}}/kiinteisto/{{haettukiinteisto.id}}/edit" class="btn btn-default">Muokkaa kiinteistöä</a>
 	</p>
 	{{forms.destroy_button("#{base_path}/kiinteisto/#{haettukiinteisto.id}/destroy")}} 
 {% endif %}
@@ -47,7 +47,7 @@
 					<span class="glyphicon glyphicon-exclamation-sign"><span>
 				{% endif %}
 			</td> 
-			<td><a href="{{base_path}}/autopaikka/{{autopaikka.id}}">{{autopaikka.nimi}}</td>
+			<td><a href="{{base_path}}/autopaikka/{{autopaikka.id}}">{{autopaikka.numero}}</td>
 	        <td><a href="{{base_path}}/asiakas/{{autopaikka.isReserved().getCustomerInfo().id}}">{{autopaikka.isReserved().getCustomerInfo().etunimi}} {{autopaikka.isReserved().getCustomerInfo().sukunimi}}</td>
 	        <td>{{autopaikka.isReserved().aloitus_pvm}}</td>
 	        <td>{{autopaikka.isReserved().paattymis_pvm}}</td>

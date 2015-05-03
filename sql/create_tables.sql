@@ -20,7 +20,7 @@ CREATE TABLE Kiinteisto(
 CREATE TABLE Autopaikka(
 	id SERIAL PRIMARY KEY NOT NULL,
 	kiinteisto_id INTEGER REFERENCES Kiinteisto(id) ON DELETE CASCADE,
-	nimi varchar(10) NOT NULL,
+	numero INTEGER NOT NULL,
 	tyyppi INTEGER,
 	sahkopistoke boolean DEFAULT FALSE
 );

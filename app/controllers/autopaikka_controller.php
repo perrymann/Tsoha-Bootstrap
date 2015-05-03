@@ -23,7 +23,6 @@
 			$kiinteisto_id = $params['kiinteisto'];
 			$tyyppi = $params['tyyppi'];
 			
-			
 			if (isset($_POST['sahkopistoke'])) {
     			$sahkopistoke = 1;
     		} else {
@@ -32,7 +31,7 @@
 
 			$attributes = array(
 				'kiinteisto_id' => $kiinteisto_id,
-				'nimi' => $params['nimi'],
+				'numero' => $params['numero'],
 				'tyyppi' => $tyyppi,
 				'sahkopistoke' => $sahkopistoke
 				);
@@ -65,7 +64,7 @@
   			$attributes = array(
   				'id' => $id,
   				'kiinteisto_id' => $kiinteisto_id,
-  				'nimi' => $params['nimi'],
+  				'numero' => $params['numero'],
 				'tyyppi' => $tyyppi,
 				'sahkopistoke' => $sahkopistoke
 				);
@@ -74,7 +73,7 @@
   			$errors = $autopaikka->errors();
 
   			if (count($errors) > 0) {
-  				View::make('autopaikka/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+  				View::make('autopaikka/edit.html', array('errors' => $errors, 'autopaikka' => $attributes));
   			} else {
   				$autopaikka->update();
   				Redirect::to('/autopaikka/' . $autopaikka->id, array('message' => "Autopaikan muokkaus onnistui"));
@@ -92,7 +91,7 @@
 		public static function edit($id) {
 			BaseController::check_logged_in();
 			$autopaikka = Autopaikka::findById($id);
-			View::make('autopaikka/edit.html', array('attributes' => $autopaikka));
+			View::make('autopaikka/edit.html', array('autopaikka' => $autopaikka));
 
 		}
 
@@ -105,5 +104,4 @@
 			Redirect::to('/kiinteisto/' . $apu, array('message' => "Autopaikan poisto onnistui"));
 
 		}	
-
 	}

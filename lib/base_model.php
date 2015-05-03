@@ -143,4 +143,14 @@
     return $errors;
   }
 
+  public function validate_email(){
+    $errors = array();
+      if($this->email != '' || $this->email != null){
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Sähköpostiosoite on väärässä muodossa!";
+      }
+    }
+    return $errors;
   }
+
+}

@@ -6,10 +6,18 @@ class Varaus extends BaseModel{
 
 	public function __construct($attributes){
 		parent::__construct($attributes);
-		$this->validators = array('validate_enddate', 'validReservationDate');
+		$this->validators = array('startdate_not_empty', 'validate_enddate', 'validReservationDate');
 	}
 
 	// mallin validoinnit
+
+	public function startdate_not_empty(){
+		$errors = array();
+		if($this->aloitus_pvm == '' || $this->aloitus_pvm == null){
+				$errors[] = "Aloituspäivä on määriteltävä!";
+			}
+		return $errors;
+	}
 
 	// "päättymispäivä ei ennen aloituspäivää"
 
@@ -35,22 +43,19 @@ class Varaus extends BaseModel{
 			} else {
 				$paattymis_pvm = $this->paattymis_pvm;
 			}	 
-			if ($this->aloitus_pvm > $varaus->aloitus_pvm && ($varaus->paattymis_pvm == '' || $varaus->paattymis_pvm == null)) {
+			if ($this->aloitus_pvm >= $varaus->aloitus_pvm && ($varaus->paattymis_pvm == '' || $varaus->paattymis_pvm == null) && $this->id != $varaus->id) {
 				$errors[] = "Paikassa on toistaiseksi voimassa oleva varaus!";
 			} 
-			if ($this->aloitus_pvm >= $varaus->aloitus_pvm && $this->aloitus_pvm <= $varaus->paattymis_pvm && $this->id != $varaus->id){
-				$errors[] = "Paikka on varattu tällä aikavälillä! -- 1";
-			}
-			if ($paattymis_pvm >= $varaus->paattymis_pvm && $this->aloitus_pvm <= $varaus->paattymis_pvm && $this->id != $varaus->id){
-				$errors[] = "Paikka on varattu tällä aikavälillä! -- 2";
-			}
-			if ($this->aloitus_pvm < $varaus->aloitus_pvm && $paattymis_pvm >= $varaus->aloitus_pvm){
-				$errors[] = "Paikka on varattu tällä aikavälillä! -- 3";
+			if (($this->aloitus_pvm >= $varaus->aloitus_pvm && $this->aloitus_pvm <= $varaus->paattymis_pvm && $this->id != $varaus->id) ||
+				($paattymis_pvm >= $varaus->paattymis_pvm && $this->aloitus_pvm <= $varaus->paattymis_pvm && $this->id != $varaus->id) ||
+				($this->aloitus_pvm < $varaus->aloitus_pvm && $paattymis_pvm >= $varaus->aloitus_pvm && $this->id != $varaus->id)){
 				
+				$errors[] = "Virhe! Paikka on varattu aikavälillä " . $varaus->aloitus_pvm . " - " . $varaus->paattymis_pvm . "!"; 
 			}
 		}
 		return $errors;
-	} 
+	}
+	
 
 	// mallin varsinaiset metodit....
 

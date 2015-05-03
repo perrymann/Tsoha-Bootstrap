@@ -50,11 +50,11 @@ class KayttajaController extends BaseController{
     	BaseController::check_admin();
     	$params = $_POST;
 
-      if (isset($_POST['paakaytto'])) {
-        $paakaytto = 1;
-      } else {
-        $paakaytto = 0;
-      } 
+        if (isset($_POST['paakaytto'])) {
+            $paakaytto = 1;
+        } else {
+            $paakaytto = 0;
+        } 
 
 		$attributes = array(
 			'nimi' => $params['nimi'],
@@ -102,7 +102,7 @@ class KayttajaController extends BaseController{
         } else {
           View::make('/kayttaja/kayttaja.html', array('errors' => $errors, 'kayttaja' => $attributes));
         }
-	  }
+	}
 
     public static function destroy($id){
         BaseController::check_logged_in();
@@ -110,7 +110,5 @@ class KayttajaController extends BaseController{
         $kayttaja = new Kayttaja(array('id' => $id));
         $kayttaja->destroy();
         Redirect::to('/kayttaja', array('message' => "Käyttäjän poistaminen onnistui"));
-
     }
-
 }
